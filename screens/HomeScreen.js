@@ -10,7 +10,12 @@ export default function HomeScreen({ navigation }) {
       <Text>Home Screen</Text>
       <Button
         title="Go to Details"
-        onPress={() => navigation.navigate('Details')}
+        onPress= { () => {
+            navigation.navigate('Details', {
+                itemId: 86,
+                otherParam: 'Testing params through routes'
+            })
+        }}
       />
     </View>
   );
