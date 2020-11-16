@@ -8,18 +8,11 @@ export default function HomeScreen({ navigation }) {
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <Text>Home Screen</Text>
-      {/* <Button
+      <Button
         title="Go to Details"
         onPress={() => navigation.navigate('Details')}
-      /> */}
+      />
     </View>
   );
 }
 
-// function HomeScreen() {
-//     return (
-//       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-//         <Text>Home Screen</Text>
-//       </View>
-//     );
-//   }
