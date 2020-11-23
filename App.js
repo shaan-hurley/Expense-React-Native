@@ -6,7 +6,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import HomeScreen from './screens/HomeScreen'
 import DetailsScreen  from './screens/DetailsScreen'
-
+import Chart from './screens/ChartScreen'
 
 
 const Stack = createStackNavigator();
@@ -31,6 +31,7 @@ function App() {
         }}
       />
         <Stack.Screen name="Details" component={DetailsScreen} />
+        <Stack.Screen name="Chart" component={Chart} />
       </Stack.Navigator>
     </NavigationContainer>
   );

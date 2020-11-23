@@ -17,6 +17,7 @@ export default function HomeScreen({ navigation }) {
             })
         }}
       />
+      <Button title="Go to charts" onPress={() => navigation.navigate('Chart')} />
     </View>
   );
 }
