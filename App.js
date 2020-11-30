@@ -26,7 +26,7 @@ function App() {
             if (route.name === 'Home') {
               iconName = focused ? 'ios-home' : 'ios-home';
             } else if (route.name === 'Chart') {
-              iconName = focused ? 'ios-bar-chart' : 'ios-chart';
+              iconName = focused ? 'ios-person' : 'ios-person';
             } else if (route.name === 'Profile') {
               iconName = focused ? 'ios-person' : 'ios-person'
             }
