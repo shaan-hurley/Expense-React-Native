@@ -52,7 +52,7 @@ export default function HomeScreen( ) {
                 otherParam: 'Testing params through routes'
             })
         }}
-      />
+      /> 
       <Button title="Go to charts" onPress={() => navigation.navigate('Chart')} /> */}
     </SafeAreaView>
   );

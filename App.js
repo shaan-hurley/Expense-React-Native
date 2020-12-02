@@ -1,7 +1,7 @@
 // In App.js in a new project
 
 import React, { useState } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, Button  } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import HomeScreen from './screens/HomeScreen'
@@ -20,8 +20,54 @@ const store = createStore(reducers, persistedState);
 store.subscribe(() => {
   saveState(store.getState());
 })
-// const Stack = createStackNavigator();
+const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
+
+function TestScreen({ route, navigation }) {
+  // const { title, info } = route.params
+  return (
+    <View style={{justifyContent:'center', width:'100%'}}>
+      <Text style={{fontSize:40}}>title</Text>
+      <Text style={{fontSize:20}}>hello</Text>
+      <Button title="More Details" onPress={() => {
+        navigation.navigate('NewScreen', { title: "this works", info: 'this works too'})
+        }} />
+    </View>
+  )
+}
+
+function NewScreen({ route, navigation }) {
+  const { title, info } = route.params
+  return (
+    <View style={{justifyContent:'center', width:'100%'}}>
+      <Text style={{fontSize:40}}>{title}</Text>
+      <Text style={{fontSize:20}}>{info}</Text>
+      {/* <Button title="More Details" onPress={() => {
+        navigation.navigate('Screen2', { title, info: 'more info...'})
+      }} /> */}
+    </View>
+  )
+}
+
+function StackScreen(navigation) {
+  return (
+    <Stack.Navigator 
+        initialRouteName="Home"
+        screenOptions={{
+          headerStyle: {
+            backgroundColor: 'tomato',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+        }}
+      >
+      <Stack.Screen name="Screen1" component={TestScreen} />
+      <Stack.Screen name="NewScreen" component={NewScreen} />
+    </Stack.Navigator>
+  )
+}
 
 function App() {
   const [ query, setQuery ] = useState('')
@@ -50,6 +96,7 @@ function App() {
         }}
       >
         <Tab.Screen name="Home" component={HomeScreen} />
+        <Tab.Screen name="Test" component={StackScreen} />
         <Tab.Screen name="Chart" component={Chart} />
         <Tab.Screen name="Add Expense" component={Expense} />
       </Tab.Navigator>
