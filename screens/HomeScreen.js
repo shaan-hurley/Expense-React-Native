@@ -1,6 +1,6 @@
 
 import * as React from 'react';
-import { Button, SafeAreaView, Text, StyleSheet } from 'react-native';
+import { Button, SafeAreaView, View, Text, StyleSheet, FlatList, StatusBar } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { Ionicons } from 'react-native-vector-icons'
@@ -13,23 +13,35 @@ import {
 } from 'react-native-chart-kit'
 
 
+
+
+
 export default function HomeScreen( ) {
   const data = [
-    { name: 'Transportation', expense: 300, color: '#5DA5DA', legendFontColor: '#7F7F7F', legendFontSize: 15 },
-    { name: 'Groceries', expense: 200, color: '#B276B2', legendFontColor: '#7F7F7F', legendFontSize: 15 },
-    { name: 'Car Payment', expense: 500, color: '#FAA43A', legendFontColor: '#7F7F7F', legendFontSize: 15 },
-    { name: 'Rent', expense: 2500, color: '#F15854', legendFontColor: '#7F7F7F', legendFontSize: 15 },
-    { name: 'Miscelleneous', expense: 300, color: '#60BD68', legendFontColor: '#7F7F7F', legendFontSize: 15 }
+    { name: 'Transport', expense: 300, color: '#5DA5DA', legendFontColor: '#7F7F7F', legendFontSize: 14 },
+    { name: 'Groceries', expense: 200, color: '#B276B2', legendFontColor: '#7F7F7F', legendFontSize: 14 },
+    { name: 'Car Payment', expense: 500, color: '#FAA43A', legendFontColor: '#7F7F7F', legendFontSize: 14 },
+    { name: 'Rent', expense: 2500, color: '#F15854', legendFontColor: '#7F7F7F', legendFontSize: 14 },
+    { name: 'Miscelleneous', expense: 300, color: '#60BD68', legendFontColor: '#7F7F7F', legendFontSize: 14 }
   ]
+  const Item = ({ name }) => (
+    <View style={styles.item}>
+      <Text style={styles.name}>{name}</Text>
+    </View>
+  );
+  
+  const renderItem = ({ item }) => (
+    <Item name={item.name} />
+  );
   
   return (
     <SafeAreaView style={styles.container}>
-      <Text style={styles.title}>Expense</Text>
+      <Text style={styles.title}>Expense Tracker</Text>
       
       <PieChart
         data={data}
         width={340}
-        height={220}
+        height={210}
         chartConfig={{
           backgroundColor: '#e26a00',
           backgroundGradientFrom: '#fb8c00',
@@ -42,7 +54,13 @@ export default function HomeScreen( ) {
         }}
         accessor="expense"
         backgroundColor="transparent"
-        paddingLeft="15"
+        paddingLeft="2"
+      />
+      <FlatList
+        data={data}
+        renderItem={renderItem}
+        keyExtractor={item => item.id}
+        style={styles.listContainer}
       />
       {/* <Button
         title="Go to Details"
@@ -54,6 +72,7 @@ export default function HomeScreen( ) {
         }}
       /> 
       <Button title="Go to charts" onPress={() => navigation.navigate('Chart')} /> */}
+
     </SafeAreaView>
   );
 }
@@ -63,6 +82,9 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     width: '100%',
+  },
+  listContainer: {
+    width: "100%",
   },
   title: {
     color: 'red',
@@ -75,6 +97,18 @@ const styles = StyleSheet.create({
     color: "white",
     width: "100%",
     
+  },
+  item: {
+    backgroundColor: '#f9c2ff',
+    width: "100%",
+    padding: 10,
+    margin: 2,
+    // marginVertical: 8,
+    // marginHorizontal: 16,
+    alignItems: "center",
+  }, 
+  name: {
+    fontSize: 18,
   },
   list: {
     flex: 1,
