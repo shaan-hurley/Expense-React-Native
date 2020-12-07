@@ -13,9 +13,22 @@ import { newExpense } from "../actions";
 
 function Chart({ navigation }) {
   const expense = useSelector((state) => state.expense);
-  const expenseList = expense.map((name, index) => {
-    return <View key={index}>name: {expense.name}</View>;
+
+  const expenseList = expense.map((item, index) => {
+    return (
+        <View key={index}>
+            <Text>name: {item.name}***</Text>
+            <Text>--{item.amount}</Text>
+            <Text>--{item.description}</Text>
+        </View>
+    );
   });
+
+  const test = () => {
+      return (
+          <Text>Hello world</Text>
+      )
+  }
   return (
     <SafeAreaView>
       <LineChart

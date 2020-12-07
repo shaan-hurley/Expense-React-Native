@@ -1,43 +1,57 @@
-
-import * as React from 'react';
-import { Button, SafeAreaView, View, Text, StyleSheet, FlatList, StatusBar } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import { Ionicons } from 'react-native-vector-icons'
+import * as React from "react";
+import {
+  Button,
+  SafeAreaView,
+  View,
+  Text,
+  StyleSheet,
+  FlatList,
+  StatusBar,
+  TouchableHighlight,
+} from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+import { Ionicons } from "react-native-vector-icons";
 import {
   LineChart,
   BarChart,
   PieChart,
   ProgressChart,
-  ContributionGraph
-} from 'react-native-chart-kit'
-
+  ContributionGraph,
+} from "react-native-chart-kit";
+import { useSelector } from 'react-redux'
 
 const test = () => {
-  return (
-      <Text>
-          This is working
-      </Text>
-  )
-}
+  return <Text>This is working</Text>;
+};
 
+export default function HomeScreen() {
+  const expense = useSelector(state => state.expense)
+  const data = expense.map((item, index) => {
+    return{
+      name: item.name,
+      expense: parseFloat(item.amount),
+      color: `hsl(${360/expense.length * index}, 100%, 40%)`,
+      legendFontColor: `hsl(${360/expense.length * index}, 100%, 40%)`,
+      legendFontSize: 14
+    }
+  })
 
-export default function HomeScreen( ) {
-  const data = [
-    { name: 'Transport', expense: 300, color: '#5DA5DA', legendFontColor: '#7F7F7F', legendFontSize: 14 },
-    { name: 'Groceries', expense: 200, color: '#B276B2', legendFontColor: '#7F7F7F', legendFontSize: 14 },
-    { name: 'Car Payment', expense: 500, color: '#FAA43A', legendFontColor: '#7F7F7F', legendFontSize: 14 },
-    { name: 'Rent', expense: 2500, color: '#F15854', legendFontColor: '#7F7F7F', legendFontSize: 14 },
-    { name: 'Miscelleneous', expense: 300, color: '#60BD68', legendFontColor: '#7F7F7F', legendFontSize: 14 }
-  ]
-  const Item = ({ name }) => (
+  const Item = ({ name, expense }) => (
     <View style={styles.item}>
       <Text style={styles.name}>{name}</Text>
+      <Text style={styles.expense}>${expense}.00</Text>
     </View>
   );
-  
+
   const renderItem = ({ item }) => (
-    <Item name={item.name} />
+    <TouchableHighlight
+      activeOpacity={0.6}
+      underlayColor="#DDDDD"
+      onPress={() => alert ("This works")}
+    >
+      <Item name={item.name} expense={item.expense} />
+    </TouchableHighlight>
   );
 
   return (
@@ -48,10 +62,10 @@ export default function HomeScreen( ) {
         width={340}
         height={210}
         chartConfig={{
-          backgroundColor: '#e26a00',
-          backgroundGradientFrom: '#fb8c00',
-          backgroundGradientTo: '#ffa726',
-          decimalPlaces: 2, 
+          backgroundColor: "#e26a00",
+          backgroundGradientFrom: "#fb8c00",
+          backgroundGradientTo: "#ffa726",
+          decimalPlaces: 2,
           color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
         }}
         accessor="expense"
@@ -61,20 +75,19 @@ export default function HomeScreen( ) {
       <FlatList
         data={data}
         renderItem={renderItem}
-        keyExtractor={item => item.id}
+        keyExtractor={(item) => item.id}
         style={styles.listContainer}
       />
     </SafeAreaView>
-
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: 'column',
-    alignItems: 'center',
-    width: '100%',
+    flexDirection: "column",
+    alignItems: "center",
+    width: "100%",
   },
   listContainer: {
     marginTop: 30,
@@ -83,37 +96,40 @@ const styles = StyleSheet.create({
     opacity: 0.8,
   },
   title: {
-    color: 'red',
-    textAlign: 'center',
+    color: "red",
+    textAlign: "center",
     fontSize: 35,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     letterSpacing: 3,
     padding: (0, 20),
     backgroundColor: "#1abc9c",
     color: "white",
     width: "100%",
-    
   },
   item: {
-    backgroundColor: '#f9c2ff',
+    flexDirection: "row",
+    backgroundColor: "#f9c2ff",
     width: "100%",
     padding: 10,
     margin: 2,
+    justifyContent: "space-between",
     // marginVertical: 8,
     // marginHorizontal: 16,
     alignItems: "center",
-    
-  }, 
+  },
   name: {
-    fontSize: 28,
+    fontSize: 24,
+  },
+  expense: {
+    fontSize: 24,
   },
   list: {
     flex: 1,
-    alignItems: 'flex-end',
+    alignItems: "flex-end",
   },
   input: {
-    width: '100%', 
+    width: "100%",
     borderWidth: 1,
-    padding: 10
+    padding: 10,
   },
 });

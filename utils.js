@@ -1,9 +1,10 @@
-const PSSWRDZ_STATE = "PSSWRDZ_STATE"
+// import { AsyncStorage } from "react-native";
+const EXPENSE_STATE = "EXPENSE_STATE"
 
 // Load State
 export const loadState = () => {
   try {
-    const serializedState = localStorage.getItem(PSSWRDZ_STATE)
+    const serializedState = localStorage.getItem(EXPENSE_STATE)
     if (serializedState === null) {
       return undefined
     }
@@ -17,7 +18,7 @@ export const loadState = () => {
 export const saveState = (state) => {
   try {
     const serializedState = JSON.stringify(state)
-    localStorage.setItem(PSSWRDZ_STATE, serializedState)
+    localStorage.setItem(EXPENSE_STATE, serializedState)
   } catch(err) {
     console.log("Error saving data:"+err)
   }

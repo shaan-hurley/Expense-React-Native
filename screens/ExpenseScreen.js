@@ -21,24 +21,24 @@ export default function Expense() {
       <Text>Expense</Text>
       <TextInput
         style={{ height: 40, borderColor: "gray", borderWidth: 1 }}
-        onChange={(e) => {
-          setName(e.target.value);
+        onChangeText={(text) => {
+          setName(text);
         }}
         value={name}
       />
       <Text>Amount</Text>
       <TextInput
         style={{ height: 40, borderColor: "gray", borderWidth: 1 }}
-        onChange={(e) => {
-          setAmount(e.target.value);
+        onChangeText={(text) => {
+          setAmount(text);
         }}
         value={amount}
       />
       <Text>Description</Text>
       <TextInput
         style={{ height: 40, borderColor: "gray", borderWidth: 1 }}
-        onChange={(e) => {
-          setDescription(e.target.value);
+        onChangeText={(text) => {
+          setDescription(text);
         }}
         value={description}
       />
