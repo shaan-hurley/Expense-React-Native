@@ -15,11 +15,11 @@ import {
 
 export default function HomeScreen( ) {
   const data = [
-    { name: 'Seoul', population: 21500000, color: 'rgba(131, 167, 234, 1)', legendFontColor: '#7F7F7F', legendFontSize: 15 },
-    { name: 'Toronto', population: 2800000, color: '#F00', legendFontColor: '#7F7F7F', legendFontSize: 15 },
-    { name: 'Beijing', population: 527612, color: 'red', legendFontColor: '#7F7F7F', legendFontSize: 15 },
-    { name: 'New York', population: 8538000, color: '#ffffff', legendFontColor: '#7F7F7F', legendFontSize: 15 },
-    { name: 'Moscow', population: 11920000, color: 'rgb(0, 0, 255)', legendFontColor: '#7F7F7F', legendFontSize: 15 }
+    { name: 'Transportation', expense: 300, color: '#5DA5DA', legendFontColor: '#7F7F7F', legendFontSize: 15 },
+    { name: 'Groceries', expense: 200, color: '#B276B2', legendFontColor: '#7F7F7F', legendFontSize: 15 },
+    { name: 'Car Payment', expense: 500, color: '#FAA43A', legendFontColor: '#7F7F7F', legendFontSize: 15 },
+    { name: 'Rent', expense: 2500, color: '#F15854', legendFontColor: '#7F7F7F', legendFontSize: 15 },
+    { name: 'Miscelleneous', expense: 300, color: '#60BD68', legendFontColor: '#7F7F7F', legendFontSize: 15 }
   ]
   
   return (
@@ -40,7 +40,7 @@ export default function HomeScreen( ) {
             borderRadius: 16
           }
         }}
-        accessor="population"
+        accessor="expense"
         backgroundColor="transparent"
         paddingLeft="15"
       />
