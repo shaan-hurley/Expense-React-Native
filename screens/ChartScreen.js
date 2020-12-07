@@ -1,5 +1,5 @@
-import * as React from 'react';
-import { SafeAreaView, Text, Dimensions } from 'react-native'
+import React, { useState } from 'react'
+import { SafeAreaView, Text, Dimensions, View } from 'react-native'
 import {
     LineChart,
     BarChart,
@@ -8,13 +8,25 @@ import {
     ContributionGraph
   } from 'react-native-chart-kit'
 
+import { connect, useSelector } from 'react-redux'
+import { newExpense } from '../actions'
 
 export default function Chart({navigation}) {
+    const expense = useSelector((state) => state.expense)
+    const expenseList = expense.map((name, index) => {
+        return (
+            <View key={index}>
+                <Text>
+                    Hello
+                </Text>
+                name: {expense.name}
+            </View>
+        )
+    })
+
+
     return (
         <SafeAreaView>
-            <Text>
-                Bezier Line Chart
-            </Text>
             <LineChart
                 data={{
                 labels: ['January', 'February', 'March', 'April', 'May', 'June'],
@@ -47,7 +59,10 @@ export default function Chart({navigation}) {
                 borderRadius: 16
                 }}
             />
+            
         </SafeAreaView> 
+   
+
     );
 }
 

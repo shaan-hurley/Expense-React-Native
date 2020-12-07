@@ -13,7 +13,13 @@ import {
 } from 'react-native-chart-kit'
 
 
-
+const test = () => {
+  return (
+      <Text>
+          This is working
+      </Text>
+  )
+}
 
 
 export default function HomeScreen( ) {
@@ -33,11 +39,10 @@ export default function HomeScreen( ) {
   const renderItem = ({ item }) => (
     <Item name={item.name} />
   );
-  
+
   return (
     <SafeAreaView style={styles.container}>
       <Text style={styles.title}>Expense Tracker</Text>
-      
       <PieChart
         data={data}
         width={340}
@@ -72,19 +77,21 @@ export default function HomeScreen( ) {
         }}
       /> 
       <Button title="Go to charts" onPress={() => navigation.navigate('Chart')} /> */}
-
     </SafeAreaView>
+
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    flexDirection: 'column',
     alignItems: 'center',
     width: '100%',
   },
   listContainer: {
     width: "100%",
+
   },
   title: {
     color: 'red',
@@ -106,13 +113,14 @@ const styles = StyleSheet.create({
     // marginVertical: 8,
     // marginHorizontal: 16,
     alignItems: "center",
+    
   }, 
   name: {
     fontSize: 18,
   },
   list: {
     flex: 1,
-    width: "100%"
+    alignItems: 'flex-end',
   },
   input: {
     width: '100%', 
