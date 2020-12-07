@@ -11,20 +11,21 @@ import {
 import { connect, useSelector } from 'react-redux'
 import { newExpense } from '../actions'
 
-export default function Chart({navigation}) {
+
+
+
+
+
+
+function Chart({navigation}) {
     const expense = useSelector((state) => state.expense)
     const expenseList = expense.map((name, index) => {
         return (
             <View key={index}>
-                <Text>
-                    Hello
-                </Text>
                 name: {expense.name}
             </View>
         )
     })
-
-
     return (
         <SafeAreaView>
             <LineChart
@@ -59,7 +60,7 @@ export default function Chart({navigation}) {
                 borderRadius: 16
                 }}
             />
-            
+            {expenseList}
         </SafeAreaView> 
    
 
@@ -67,3 +68,10 @@ export default function Chart({navigation}) {
 }
 
 
+const mapStateToProps = (state) => {
+    const { expense } = state
+    return { expense }
+}
+
+
+export default connect(mapStateToProps)(Chart)

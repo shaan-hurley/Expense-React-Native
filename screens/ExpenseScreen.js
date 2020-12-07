@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Text, SafeAreaView, TextInput, Button, StyleSheet } from 'react-native'
+import { Text, SafeAreaView, TextInput, Button, StyleSheet, View, TouchableOpacity } from 'react-native'
 import { useDispatch } from 'react-redux'
 import { newExpense } from '../actions'
 
@@ -13,7 +13,7 @@ export default function Expense() {
             <Text>Expense</Text>
             <TextInput
                 style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
-                onChange={(e) => {
+                onChangeText={(e) => {
                     setName(e.target.value)}
                 }
                 value={name}
@@ -34,13 +34,27 @@ export default function Expense() {
                 }
                 value={description}
             />
-            <Button
-                title="Save"
-                onPress={(e) => {
-                    const dispatch = useDispatch()
-                    dispatch(newExpense(name, amount, description))
-                }}
-            />
+            <View style={styles.buttonContainer}>
+                {/* <Button
+                    title="Save"
+                    onPress={(e) => {
+                        const dispatch = useDispatch()
+                        dispatch(newExpense(name, amount, description))
+                    }}
+                    style={styles.button}
+                /> */}
+
+                <TouchableOpacity
+                    
+                    onPress={(e) => {
+                        const dispatch = useDispatch()
+                        dispatch(newExpense(name, amount, description))
+                    }}
+                >
+                    <Text style={styles.button}>Save</Text>
+                </TouchableOpacity>
+            </View>
+
         </SafeAreaView>
     )
     
@@ -53,9 +67,19 @@ const styles = StyleSheet.create({
       alignItems: 'center',
       width: '100%',
     },
+    buttonContainer: {
+        marginTop: 50,
+        elevation: 8,
+        backgroundColor: '#60BD68',
+        borderRadius: 10,
+        paddingVertical: 10,
+        paddingHorizontal: 12
+    },
     button: {
-        marginTop: 700,
-        backgroundColor: 'red',
-        color: 'red',
+        fontSize: 18,
+        color: "#000",
+        fontWeight: "bold",
+        alignSelf: "center",
+        textTransform: "uppercase"
     },
   });

@@ -51,11 +51,8 @@ export default function HomeScreen( ) {
           backgroundColor: '#e26a00',
           backgroundGradientFrom: '#fb8c00',
           backgroundGradientTo: '#ffa726',
-          decimalPlaces: 2, // optional, defaults to 2dp
+          decimalPlaces: 2, 
           color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-          style: {
-            borderRadius: 16
-          }
         }}
         accessor="expense"
         backgroundColor="transparent"
@@ -67,16 +64,6 @@ export default function HomeScreen( ) {
         keyExtractor={item => item.id}
         style={styles.listContainer}
       />
-      {/* <Button
-        title="Go to Details"
-        onPress= { () => {
-            navigation.navigate('Details', {
-                itemId: 86,
-                otherParam: 'Testing params through routes'
-            })
-        }}
-      /> 
-      <Button title="Go to charts" onPress={() => navigation.navigate('Chart')} /> */}
     </SafeAreaView>
 
   );
