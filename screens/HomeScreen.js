@@ -90,8 +90,10 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   listContainer: {
+    marginTop: 30,
     width: "100%",
-
+    backgroundColor: "#8ABAD3ff",
+    opacity: 0.8,
   },
   title: {
     color: 'red',
@@ -116,7 +118,7 @@ const styles = StyleSheet.create({
     
   }, 
   name: {
-    fontSize: 18,
+    fontSize: 28,
   },
   list: {
     flex: 1,
