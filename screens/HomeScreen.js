@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
   listContainer: {
     marginTop: 30,
     width: "100%",
-    backgroundColor: "#8ABAD3ff",
+    backgroundColor: "#2191FB",
     opacity: 0.8,
   },
   title: {
