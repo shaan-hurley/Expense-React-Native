@@ -1,25 +1,32 @@
-import React from 'react'
-import { View, Text, Button } from 'react-native'
+import React from 'react';
+import { SafeAreaView, View, Text, Button, StyleSheet } from 'react-native'
 
-export default function DetailsScreen({ navigation, route }) {
-    const { itemId } = route.params;
-    const { otherParam } = route.params;
-    return (
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <Text>Details Screen</Text>
-        <Text>Details Screen</Text>
-        <Text>itemId: {JSON.stringify(itemId)}</Text>
-        <Text>otherParam: {JSON.stringify(otherParam)}</Text>
-        <Button
-            title="Go to Details... again"
-            onPress={() =>
-                navigation.push('Details', {
-                    itemId: Math.floor(Math.random() * 100),
-                })
-            }
-        />
-        <Button title="Go to Home" onPress={() => navigation.navigate('Home')} />
-        <Button title="Go back" onPress={() => navigation.goBack()} />
-      </View>
-    );
-  }
+
+
+export default function DetailsScreen({ route, navigation }) {
+  // const { title, info } = route.params
+  return (
+    <SafeAreaView style={styles.container}>
+      <Text style={styles.title}>Details</Text>
+      <Text style={{ fontSize: 40 }}>title</Text>
+      <Text style={{ fontSize: 20 }}>hello</Text>
+    </SafeAreaView>
+  );
+}
+
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  title: {
+    textAlign: "center",
+    fontSize: 35,
+    fontWeight: "bold",
+    letterSpacing: 3,
+    padding: (0, 20),
+    backgroundColor: "#1abc9c",
+    color: "white",
+    width: "100%",
+  },
+});

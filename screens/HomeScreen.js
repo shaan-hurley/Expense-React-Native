@@ -21,11 +21,8 @@ import {
 } from "react-native-chart-kit";
 import { useSelector } from 'react-redux'
 
-const test = () => {
-  return <Text>This is working</Text>;
-};
 
-export default function HomeScreen() {
+export default function HomeScreen({ navigation, route }) {
   const expense = useSelector(state => state.expense)
   const data = expense.map((item, index) => {
     return{
@@ -48,7 +45,7 @@ export default function HomeScreen() {
     <TouchableHighlight
       activeOpacity={0.6}
       underlayColor="#DDDDD"
-      onPress={() => alert ("This works")}
+      onPress={() => navigation.navigate('Test')}
     >
       <Item name={item.name} expense={item.expense} />
     </TouchableHighlight>
@@ -96,7 +93,6 @@ const styles = StyleSheet.create({
     opacity: 0.8,
   },
   title: {
-    color: "red",
     textAlign: "center",
     fontSize: 35,
     fontWeight: "bold",
@@ -113,8 +109,7 @@ const styles = StyleSheet.create({
     padding: 10,
     margin: 2,
     justifyContent: "space-between",
-    // marginVertical: 8,
-    // marginHorizontal: 16,
+
     alignItems: "center",
   },
   name: {

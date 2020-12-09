@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { SafeAreaView, Text, Dimensions, View } from "react-native";
+import { SafeAreaView, Text, Dimensions, View, StyleSheet } from "react-native";
 import {
   LineChart,
   BarChart,
@@ -17,28 +17,30 @@ function Chart({ navigation }) {
   const expenseList = expense.map((item, index) => {
     return (
         <View key={index}>
-            <Text>name: {item.name}***</Text>
-            <Text>--{item.amount}</Text>
-            <Text>--{item.description}</Text>
+            <Text>name: {item.name}</Text>
+            <Text>{item.amount}</Text>
+            <Text>{item.description}</Text>
         </View>
     );
   });
-
-  const test = () => {
-      return (
-          <Text>Hello world</Text>
-      )
-  }
+  const data = expense.map((item, index) => {
+    return{
+      data: [
+        Math.random() * 100
+      ]
+    }
+  })
   return (
     <SafeAreaView>
+      <Text style={styles.title}>History</Text>
       <LineChart
         data={{
           labels: ["January", "February", "March", "April", "May", "June"],
           datasets: [
             {
               data: [
-                Math.random() * 100,
-                Math.random() * 100,
+                300 / 100,
+                2000 / 100,
                 Math.random() * 100,
                 Math.random() * 100,
                 Math.random() * 100,
@@ -53,7 +55,7 @@ function Chart({ navigation }) {
           backgroundColor: "#e26a00",
           backgroundGradientFrom: "#fb8c00",
           backgroundGradientTo: "#ffa726",
-          decimalPlaces: 2, // optional, defaults to 2dp
+          decimalPlaces: 2, 
           color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
           style: {
             borderRadius: 16,
@@ -70,9 +72,22 @@ function Chart({ navigation }) {
   );
 }
 
-const mapStateToProps = (state) => {
-  const { expense } = state;
-  return { expense };
-};
+export default Chart;
 
-export default connect(mapStateToProps)(Chart);
+
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  title: {
+    textAlign: "center",
+    fontSize: 35,
+    fontWeight: "bold",
+    letterSpacing: 3,
+    padding: (0, 20),
+    backgroundColor: "#1abc9c",
+    color: "white",
+    width: "100%",
+  },
+});

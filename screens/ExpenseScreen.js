@@ -57,6 +57,7 @@ export default function Expense({ navigation, route }) {
         >
           <Text style={styles.button}>Save</Text>
         </TouchableOpacity>
+    
       </View>
     </SafeAreaView>
   );
@@ -94,12 +95,13 @@ const styles = StyleSheet.create({
   input: {
     height: 40,
     borderColor: "gray",
+    textAlign: 'justify',
     borderWidth: 1,
     borderRadius: 50,
     marginLeft: 10,
     marginRight: 10,
     marginBottom: 5,
-    
+
   },
   inputTitle: {
     fontSize: 18,

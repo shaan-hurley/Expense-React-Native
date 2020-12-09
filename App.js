@@ -24,25 +24,6 @@ store.subscribe(() => {
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
-function TestScreen({ route, navigation }) {
-  // const { title, info } = route.params
-  return (
-    <View style={{ justifyContent: "center", width: "100%" }}>
-      <Text style={{ fontSize: 40 }}>title</Text>
-      <Text style={{ fontSize: 20 }}>hello</Text>
-      <Button
-        title="More Details"
-        onPress={() => {
-          navigation.navigate("NewScreen", {
-            title: "this works",
-            info: "this works too",
-          });
-        }}
-      />
-    </View>
-  );
-}
-
 function NewScreen({ route, navigation }) {
   const { title, info } = route.params;
   return (
@@ -59,19 +40,17 @@ function NewScreen({ route, navigation }) {
 function StackScreen(navigation) {
   return (
     <Stack.Navigator
-      initialRouteName="Home"
+      initialRouteName="Details"
       screenOptions={{
-        headerStyle: {
-          backgroundColor: "tomato",
-        },
+        headerShown: false,
         headerTintColor: "#fff",
         headerTitleStyle: {
           fontWeight: "bold",
+          fontSize: 35,
         },
       }}
     >
-      <Stack.Screen name="Screen1" component={TestScreen} />
-      <Stack.Screen name="NewScreen" component={NewScreen} />
+      <Stack.Screen name="Details" component={DetailsScreen} />
     </Stack.Navigator>
   );
 }
