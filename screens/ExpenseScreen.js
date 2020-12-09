@@ -1,3 +1,4 @@
+import { NavigationHelpersContext } from "@react-navigation/native";
 import React, { useState } from "react";
 import {
   Text,
@@ -5,38 +6,44 @@ import {
   TextInput,
   Button,
   StyleSheet,
+  StatusBar,
   View,
   TouchableOpacity,
 } from "react-native";
 import { connect, useDispatch } from "react-redux";
 import { newExpense } from "../actions";
+import { saveState } from "../utils";
 
-export default function Expense() {
+export default function Expense({ navigation, route }) {
   const [name, setName] = useState("");
   const [amount, setAmount] = useState("");
   const [description, setDescription] = useState("");
   const dispatch = useDispatch();
   return (
-    <SafeAreaView>
-      <Text>Expense</Text>
+    <SafeAreaView style={styles.container}>
+      <Text style={styles.title}>Add Expense</Text>
+      <Text style={styles.inputTitle}>Expense</Text>
       <TextInput
-        style={{ height: 40, borderColor: "gray", borderWidth: 1 }}
+        style={styles.input}
+        placeholder="Name of Expense"
         onChangeText={(text) => {
           setName(text);
         }}
         value={name}
       />
-      <Text>Amount</Text>
+      <Text style={styles.inputTitle}>Amount</Text>
       <TextInput
-        style={{ height: 40, borderColor: "gray", borderWidth: 1 }}
+        style={styles.input}
+        placeholder="Enter Number Amount"
         onChangeText={(text) => {
           setAmount(text);
         }}
         value={amount}
       />
-      <Text>Description</Text>
+      <Text style={styles.inputTitle}>Description</Text>
       <TextInput
-        style={{ height: 40, borderColor: "gray", borderWidth: 1 }}
+        style={styles.input}
+        placeholder='Add a Description'
         onChangeText={(text) => {
           setDescription(text);
         }}
@@ -58,16 +65,24 @@ export default function Expense() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
+  },
+  title: {
+    textAlign: "center",
+    fontSize: 35,
+    fontWeight: "bold",
+    letterSpacing: 3,
+    padding: (0, 20),
+    backgroundColor: "#1abc9c",
+    color: "white",
     width: "100%",
+    marginBottom: 50,
   },
   buttonContainer: {
-    marginTop: 50,
+    marginTop: 25,
     elevation: 8,
     backgroundColor: "#60BD68",
-    borderRadius: 10,
+    borderRadius: 50,
     paddingVertical: 10,
-    paddingHorizontal: 12,
   },
   button: {
     fontSize: 18,
@@ -76,4 +91,20 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     textTransform: "uppercase",
   },
+  input: {
+    height: 40,
+    borderColor: "gray",
+    borderWidth: 1,
+    borderRadius: 50,
+    marginLeft: 10,
+    marginRight: 10,
+    marginBottom: 5,
+    
+  },
+  inputTitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginLeft: 15,
+    marginBottom: 5,
+  }
 });
